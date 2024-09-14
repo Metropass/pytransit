@@ -415,24 +415,64 @@ class TransitObj:
             return self.lon
             
     class QueryStops:
-        def __init__(self, lat, lon, query, pickup_dropoff_filter, max_num_results) -> None:
+        """_The Query Stops Object_
+        
+        
+        """
+        def __init__(self, lat: float, lon: float, query: str, pickup_dropoff_filter:str, max_num_results: int) -> None:
+            """_Initialiser for the Query Stops object_
+
+            Args:
+                lat (float): _Latitude of the approximate area of the search._
+                lon (float): _Longitude of the approximate area of the search._
+                query (str): _Search term. Will be matched against the stop_name and stop_code of potential stops from the GTFS._
+                pickup_dropoff_filter (str): _Enum: "PickupAllowedOnly" "DropoffAllowedOnly" "Everything" For routable stops, futher filter based on whether a rider can embark or disembark at this stop._
+                max_num_results (int): _Maximum number of results to return. If there are few matches, less results than requested will be returned._
+            """
             self.lat = lat
             self.lon = lon
             self.query = query
             self.pickup_dropoff_filter = pickup_dropoff_filter
             self.max_num_results = max_num_results
         def get_lat(self):
+            """_Query: Get Latitude value of PyTransit instance_
+
+            Returns:
+                _float_: _The Latitude used for this PyTransit instance, as a float._
+            """
             return self.lat
         def get_lon(self):
+            """_Query: Gets the Longitude value of the PyTransit instance._
+
+            Returns:
+                _float_: _The Longitude used for this PyTransit instance, as a float._
+            """
             return self.lon
         def get_query(self):
+            """_summary_
+
+            Returns:
+                _str_: _The search term passed into the initialiser_
+            """
             return self.query
         def get_pickup_dropoff_filter(self):
+            """_Query: Gets the pickup-dropoff filter string from the Query Stop instance within PyTransit_
+
+            Returns:
+                _str_: _The drop off filter string_
+            """
             return self.pickup_dropoff_filter
         def get_max_num_results(self):
+            """_Query: Gets the max-num results int from the Query Stop instance within PyTransit_
+
+            Returns:
+                _int_: _The max-num results as an int_
+            """
             return self.max_num_results
         
     class QueryStopResults:
+        """_The Query Stop Results object, this is returned when you query a stop._
+        """
         def __init__(self, global_stop_id, location_type, match_strength, parent_station_global_stop_id, route_type, stop_lat, stop_lon, stop_name) -> None:
             self.global_stop_id = global_stop_id
             self.location_type = location_type
